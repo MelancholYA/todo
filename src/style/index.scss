@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+::root {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Josefin Sans";
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.App {
+  height: 100vh;
+  width: 100%;
+  background-image: url("../imgs/bg-desktop-light.jpg");
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background-size: contain;
+}
+.holder {
+  width: 600px;
+  margin: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 20px 0;
+  &__title {
+    color: white;
+  }
+  &__toggle {
+    all: unset;
+    cursor: pointer;
+  }
+}
+.input {
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 15px;
+  box-shadow: 0 5px 14px gainsboro;
+  input[type="text"] {
+    all: unset;
+    width: calc(100% - 25px);
+    padding: 0 10px;
+  }
+}
+.container {
+  background: white;
+  border-radius: 5px;
+  margin-top: 20px;
+  box-shadow: 0 5px 14px gainsboro;
+  &__todos {
+    height: 50vh;
+    overflow: auto;
+    &__todo {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      padding: 15px 25px;
+      border-bottom: 1px solid gainsboro;
+      animation: fadeIn 0.7s;
+      &:hover {
+        .delete {
+          opacity: 1;
+        }
+      }
+      p {
+        margin-left: 10px;
+      }
+      .done {
+        color: #a09e9e;
+        text-decoration: line-through;
+      }
+      .delete {
+        all: unset;
+        margin-left: auto;
+        opacity: 0;
+        height: 20px;
+        transition: 0.3s;
+
+        svg {
+          height: 25px;
+        }
+      }
+    }
+  }
+  &__details {
+    position: relative;
+    margin-bottom: 50px;
+    border-top: 1px solid gainsboro;
+    background: #f8fcff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 20px;
+    span {
+      cursor: pointer;
+    }
+    &__count {
+      font-size: 14px;
+      color: #7b7b7b;
+    }
+    &__categories {
+      width: auto;
+      min-width: 40%;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0 10px;
+    }
+  }
+}
+
+label {
+  position: relative;
+  height: 25px;
+  flex-shrink: 0;
+  width: 25px;
+  display: inline-block;
+  border-radius: 100vw;
+  border: 2px solid #888888;
+}
+.check {
+  display: none;
+  &:checked + label {
+    background-image: linear-gradient(45deg, #57ddff, rgb(192, 88, 243));
+    border: 0;
+    &::before {
+      content: url("../imgs/icon-check.svg");
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+.empty {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  h1 {
+    padding: 15px;
+    box-shadow: 0 5px 14px gainsboro;
+    border-radius: 5px;
+    animation: fadeIn 0.7s;
+  }
+}
+.active {
+  color: #785ae2;
+}
+.dark {
+  background-image: url("../imgs/bg-desktop-dark.jpg");
+  background-color: black;
+  .container {
+    background: #25273c;
+    box-shadow: 0 5px 14px #9a9a9a00;
+    &__todos__todo {
+      border-bottom: 1px solid hsl(237, 14%, 26%);
+      color: white;
+    }
+    &__details {
+      background: #25273c;
+      color: hsl(234, 11%, 52%);
+    }
+  }
+  .input {
+    background: hsl(235, 24%, 19%);
+    box-shadow: 0 5px 14px #9a9a9a00;
+    color: white;
+    input[type="text"] {
+      &::placeholder {
+        color: hsl(234, 39%, 85%);
+      }
+    }
+  }
+  .empty {
+    h1 {
+      color: #b7b3ea;
+      box-shadow: 0 5px 14px #0e0e0e9e;
+    }
+  }
+  .container__details__categories {
+    background: #25273c;
+  }
+}
+
+@media (max-width: 600px) {
+  .holder {
+    width: unset;
+    padding: 10px;
+  }
+  .App {
+    background-image: url("../imgs/bg-mobile-light.jpg");
+    background-color: black;
+  }
+  .container__todos__todo .delete {
+    opacity: 1;
+  }
+  .container__details__categories {
+    position: absolute;
+    width: 100%;
+    padding: 10px;
+    top: calc(100% + 10px);
+    border-radius: 5px;
+    background: #e5e5ee;
+    box-shadow: 0 5px 14px #9a9a9a00;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
